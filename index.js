@@ -146,28 +146,19 @@ async function connectToWhatsApp() {
 	const {
 		state,
 		saveCreds
-	} = await useMultiFileAuthState("session")
+	} = await useMultiFileAuthState("sessionn")
 	const vreden = makeWASocket({
-		printQRInTerminal: !setting.bots.pairing,
-		syncFullHistory: true,
-		markOnlineOnConnect: true,
-		connectTimeoutMs: 60000,
-		defaultQueryTimeoutMs: 0,
-		keepAliveIntervalMs: 10000,
-		generateHighQualityLinkPreview: true,
-		version: [ 2, 3000, 1017531287 ],
-		browser: ["Ubuntu", "Chrome", "20.0.04"],
-		logger: pino({
-			level: 'fatal'
-		}),
-		auth: {
-			creds: state.creds,
-			keys: makeCacheableSignalKeyStore(state.keys, pino().child({
-				level: 'silent',
-				stream: 'store'
-			})),
-		}
-	});
+        logger: pino({ level: "silent" }),
+        printQRInTerminal: false,
+        auth: state,
+        browser: ["Ubuntu", "Chrome", "20.0.04"],
+        version: [ 2, 3000, 1023223821 ],
+        generateHighQualityLinkPreview: false,
+        mediaCompression: true,
+        syncFullHistory: false,
+        markOnlineOnConnect: false,
+        emitOwnEvents: false,
+    })
 	
 	if (!vreden.authState.creds.registered) {
 		const phoneNumber = await question('\n\n\nEnter Your WhatsApp Number:\n');
@@ -1116,11 +1107,7 @@ async function connectToWhatsApp() {
 		}
 	});
 	console.log(chalk.green("Plugin running..."))
-	
 	connectToWhatsApp();
-	
-	
-	
 
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
