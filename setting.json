@@ -1,0 +1,107 @@
+{
+  "owner": {
+    "number": [
+      "6285865716305@s.whatsapp.net",
+      "6283894585073@s.whatsapp.net",
+      "6285643115199@s.whatsapp.net",
+      "18309557898@s.whatsapp.net"
+    ],
+    "nomor": "6285865716305@s.whatsapp.net",
+    "name": "Rixzyy"
+  },
+  "links": {
+    "tiktok": "https://rixzyy.my.id",
+    "instagram": "-",
+    "channel": "https://whatsapp.com/channel/0029Vagl4Sc2P59j5rhdO90J",
+    "group": "https://chat.whatsapp.com/C65UyhNlmCw81frZJrDqLw",
+    "website": "https://bot-digital.shop"
+  },
+  "bots": {
+    "nameFull": "Nailong AI",
+    "nameCall": "Nailong",
+    "footer": "© Nailong MD || Rixzyy",
+    "session": "session",
+    "style": "v5",
+    "welcomeType": "v2",
+    "title": "RXZ Team",
+    "menu": "*Hello* @pushname 👋🏻\nSaya Adalah Bot Whatsapp Yang Bertugas Untuk Membantu Anda Dan Mencari Informasi Lainnya, Temukanlah Fitur Terbaik Di @botname, Selamat Menikmati Fitur Dari Saya\n\n*Total Fitur* : @totalfitur",
+    "pairing": true,
+    "idsaluran": "120363323208837630@newsletter",
+    "namasaluran": "Rixzyy`Pay"
+  },
+  "mediaPath": {
+    "donasi": "https://pomf2.lain.la/f/semgb8cs.jpg",
+    "thumbnail": "https://files.catbox.moe/8i6n0b.jpg",
+    "audioMenu": "url pomf",
+    "audioOwner": "url pomf"
+  },
+  "ptero": {
+    "links": "https://payy.rixzyy.my.id",
+    "plta": "ptla_HBh4n2xLHBU76ubzmjH4IpY6K9HN1wOB82ZShDjBrWl",
+    "pltc": "ptlc_0yz6eDOdXdoEue1y6WiLz41qyiHiOCqLSlgdQk4rUfR",
+    "eggs": 15,
+    "nets": 5,
+    "location": 1
+  },
+  "apikey": {
+    "skizo": "rafael",
+    "zeeone": "gak usah isi, gak perlu",
+    "lolhuman": "sama, pajangan doang",
+    "neoxr": "panjangan",
+    "atlantic": "OZmbN7pqupdAx8tx9hW68EckRFqA3HojBZxImeb5g2A9FglAnbauw3LaKVwy2NJ4FXjlpWQRoieYuzCuo2CcZZa18HKNLFPJq8Pb",
+    "otpku": "BuMkK2dJ9Q5abcXPf3hqVjx7IG6OiD"
+  },
+  "general": {
+    "prefix": true,
+    "audioOwner": false,
+    "audioMenu": false,
+    "autoWelcome": false,
+    "autoLeave": false,
+    "autoBackup": true,
+    "autoBio": false,
+    "autoRespond": false,
+    "autoBlock212": false,
+    "autoRead": true,
+    "autoSholat": true,
+    "antiViewOnce": false,
+    "antiDelete": false,
+    "antiCall": false,
+    "onlyRegister": false,
+    "notifRegister": false,
+    "grupOnly": true,
+    "privateOnly": false
+  },
+  "count": {
+    "toxic": 5,
+    "antiLink": 5,
+    "store": {
+      "atlantic": 4
+    },
+    "limit": {
+      "premium": 100000,
+      "free": 35
+    },
+    "game": {
+      "premium": 500,
+      "free": 50
+    }
+  },
+  "reward": {
+    "game": 5000,
+    "timeGame": 60000
+  },
+  "mess": {
+    "wait": "*Loading...*",
+    "error": {
+      "input": "Query yang kamu berikan tidak valid",
+      "api": "Ups, terjadi kesalahan pada botkey, silahkan hubungi owner untuk memperbaikinya",
+      "bot": "Terjadi kesalahan"
+    },
+    "OnlyGrup": "Command Khusus Grup!!",
+    "OnlyPM": "Command Khusus Private Chat!!",
+    "GrupAdmin": "Khusus Admin Grup!!",
+    "BotAdmin": "Bot Harus menjadi admin",
+    "OnlyOwner": "Khusus Owner Bot!!",
+    "OnlyPrem": "Khusus VIP User!!"
+  }
+}
