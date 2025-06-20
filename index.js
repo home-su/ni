@@ -153,7 +153,6 @@ async function connectToWhatsApp() {
         auth: state,
         browser: ["Ubuntu", "Chrome", "20.0.04"],
         version: [ 2, 3000, 1023223821 ],
-        version: [2, 3000, 1023223821],
         generateHighQualityLinkPreview: false,
         mediaCompression: true,
         syncFullHistory: false,
