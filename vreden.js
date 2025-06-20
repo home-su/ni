@@ -765,7 +765,7 @@ module.exports = vreden = async (vreden, m, chatUpdate, chat, store) => {
             await vreden.sendMessage(m.chat, {
                 audio: { url: download.url },
                 mimetype: 'audio/mpeg',
-               /* contextInfo: {
+                contextInfo: {
                     forwardingScore: 9999999,
                     isForwarded: true,
                     externalAdReply: {
@@ -777,7 +777,7 @@ module.exports = vreden = async (vreden, m, chatUpdate, chat, store) => {
                         thumbnailUrl: thumbnailUrl,
                         sourceUrl: Link
                     }
-                }*/
+                }
             }, { quoted: m });
 
         } else {
@@ -2603,14 +2603,16 @@ const cmdSearch = [
   "bstation",
   "spoiler",
   "pastebin",
-  "pastegg",
+  "creategist",
+  "listgist",
+  "deletegist",
+  "updategist",
   "cekip",
   "cekhp",
   "hpdetail",
   "cekhost",
   "ceksubdo",
   "sendngl",
-  "cekdns",
   "cekweb",
   "urlscan",
   "wanumber",
@@ -2624,6 +2626,7 @@ const cmdConvert = [
   "texttosound",
   "translate",
   "tourl",
+  "tolink",
   "tovideo",
   "toimage",
   "rvo",
@@ -2902,7 +2905,8 @@ const cmdStalk = [
   "mlstalk",
   "githubstalk",
   "igstalk",
-  "ttstalk"
+  "ttstalk",
+  "roblox-stalk"
 ]
 
 const cmdImage = [
@@ -9733,6 +9737,8 @@ try {
     break
 			case 'ai':
 case 'chatgpt': {
+const gamecek = await cekgame(m.chat)
+				if (gamecek) return
     if (!text) return m.reply('Iyaa kenafaa?');
     if (!isPremium && !isCreator) {
   if (m.chat !== '120363362941060402@g.us') {
@@ -9918,6 +9924,7 @@ break
 			}
 			break
 			/*case 'nowa': case "wanumber": {
+ if (!isPremium && !isCreator) return m.reply(mess.OnlyPrem)
  if (!text) {
  return m.reply(`Provide Number with last number x\n\nContoh: ${prefix + command} 916909137xxx`);
  }
@@ -14798,7 +14805,7 @@ Expired: ${vip.days} hari, ${vip.hours} jam, ${vip.minutes} menit
 				m.reply(`Succes Me-reset Ram Server...`)
 			}
 			break
-			case 'speed':
+
 			case 'ping': {
 				try {
 					const used = process.memoryUsage();
@@ -14834,8 +14841,8 @@ Expired: ${vip.days} hari, ${vip.hours} jam, ${vip.minutes} menit
 - Ping: ${latensi.toFixed(4)} _Second_ 
 
 *\`INFO SERVER\`*
-- OS: ${software}
-- IP Address: ${nou.os.ip()}
+- OS: Fedora 40
+- IP Address: 1.1.1.1 (Private IP)
 - Type OS: ${nou.os.type()}
 
 *\`RAM :\`*
@@ -14851,8 +14858,43 @@ Expired: ${vip.days} hari, ${vip.hours} jam, ${vip.minutes} menit
 Aktif:
 ${runtime(os.uptime())}
 
-*\`CPU USAGE (${cpus.length} CORE CPU)\`*
-${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type => `- *${(type + '*').padEnd(6)}: ${(100 * cpu.times[type] / cpu.total).toFixed(2)}%`).join('\n')}
+*\`CPU USAGE (4 Threads)\`*
+Intel(R) Core(TM) i9-13900K @ 3.00GHz (Max Turbo 5.80 GHz)
+- *user* : 28.6%
+- *nice* : 0.0%
+- *system* : 10.2%
+- *idle* : 61.1%
+- *iowait* : 0.1%
+
+> ${bots.footer}`.trim();
+let responn = `*\`JARINGAN SERVER\`*
+- Ping: ${latensi.toFixed(4)} _Second_ 
+
+*\`INFO SERVER\`*
+- OS: Fedora 40
+- IP Address: 1.1.1.1 (Private IP)
+- Type OS: Linux
+
+*\`RAM :\`*
+- Total: 256.76 GB DDR5
+- Digunakan: 2${format(os.totalmem() - os.freemem())}
+
+*\`PENYIMPANAN :\`*
+- Total: 4096.76 GB NVMe Gen4
+- Digunakan: 1280.47 GB (31.3%)
+- Tersedia: 2816.13 GB (68.7%)
+
+*\`RUNTIME SERVER\`*
+Aktif:
+${runtime(os.uptime())}
+
+*\`CPU USAGE (24-Core / 32-Thread)\`*
+Intel(R) Core(TM) i9-14900K @ 3.20GHz (Max Turbo: 6.00GHz)
+- *User*    : 28.6%
+- *System*  : 10.2%
+- *Idle*    : 61.1%
+- *Nice*    : 0.0%
+- *IOWait*  : 0.1%
 
 > ${bots.footer}`.trim();
 					let image = `https://quickchart.io/chart?v=2.9.4&c=%7B%0A%20%20type%3A%20%27doughnut%27%2C%0A%20%20data%3A%20%7B%0A%20%20%20%20datasets%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20data%3A%20%5B${drive.freePercentage}%2C%20${drive.usedPercentage}%5D%2C%0A%20%20%20%20%20%20%20%20backgroundColor%3A%20%5B%27%2326AC00%27%2C%20%27red%27%5D%2C%0A%20%20%20%20%20%20%20%20label%3A%20%27Dataset%201%27%2C%0A%20%20%20%20%20%20%20%20borderWidth%3A%200%2C%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%5D%2C%0A%20%20%20%20labels%3A%20%5B%27A%27%2C%20%27C%27%5D%2C%0A%20%20%7D%2C%0A%20%20options%3A%20%7B%0A%20%20%20%20circumference%3A%20Math.PI%2C%0A%20%20%20%20rotation%3A%20Math.PI%2C%0A%20%20%20%20cutoutPercentage%3A%2075%2C%0A%20%20%20%20layout%3A%20%7B%0A%20%20%20%20%20%20padding%3A%2080%2C%0A%20%20%20%20%7D%2C%0A%20%20%20%20legend%3A%20%7B%0A%20%20%20%20%20%20display%3A%20false%2C%0A%20%20%20%20%7D%2C%0A%20%20%20%20plugins%3A%20%7B%0A%20%20%20%20%20%20datalabels%3A%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%27%23404040%27%2C%0A%20%20%20%20%20%20%20%20anchor%3A%20%27end%27%2C%0A%20%20%20%20%20%20%20%20align%3A%20%27end%27%2C%0A%20%20%20%20%20%20%20%20formatter%3A%20(val)%20%3D%3E%20val%20%2B%20%27%25%27%2C%0A%20%20%20%20%20%20%20%20font%3A%20%7B%0A%20%20%20%20%20%20%20%20%20%20size%3A%2025%2C%0A%20%20%20%20%20%20%20%20%20%20weight%3A%20%27bold%27%2C%0A%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20doughnutlabel%3A%20%7B%0A%20%20%20%20%20%20%20%20labels%3A%20%5B%0A%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20text%3A%20%27%5CnPing%20Status%27%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20font%3A%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20size%3A%2020%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20text%3A%20%27%5Cn${latensi.toFixed(4)}s%27%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20color%3A%20%27%23000%27%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20font%3A%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20size%3A%2025%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20weight%3A%20%27bold%27%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%5D%2C%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%7D%2C%0A%20%20%7D%2C%0A%7D`
@@ -14877,6 +14919,7 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
 				}
 			}
 			break
+			case 'bot':
 			case 'tes':
 			case 'test':
 				vreden.sendMessage(m.chat, {
@@ -15856,16 +15899,13 @@ ${cmdNsfw.sort((a, b) => a.localeCompare(b)).map((v, i) => `┃⌬ ${prefix + v}
 }
 				if (!text) return m.warning(`*Masukan nama lagu!*\n\nTutorial:\n${prefix+command} <judul>\n\nContoh:\n${prefix+command} Bila Nanti`)
 				try {
-					let result = await fetchJson(`https://api.vreden.web.id/api/lirik?lagu=${text}`)
+					let result = await fetchJson(`https://api.vreden.my.id/api/lirik?lagu=${text}`)
 					let anu = result.result
 					if (anu.error) {
 						m.reply("Tidak ada lagu tersebut di Genius")
 					} else {
 						vreden.sendMessage(m.chat, {
-							image: {
-								url: anu.image
-							},
-							caption: `*\`乂 LIRIK - LAGU\`*\n\n*Judul :* ${anu.title}\n*Artis :* ${anu.artist}\n*Lirik :* ${anu.lyrics}\n\n`
+							text: `*\`乂 LIRIK - LAGU\`*\n\n*Judul :* ${anu.title}\n*Artis :* ${anu.artist}\n*Lirik :* ${anu.lirik}\n\n`
 						}, {
 							quoted: m
 						})
@@ -17486,7 +17526,7 @@ ${prefix}lisbahasa
 				}
 			}
 			break
-			case 'tourl': {
+			case 'tolink': {
  // --- Panggil semua modul yang dibutuhkan ---
 const CloudKuUploader = require('cloudku-uploader');
  // 1. Fungsi untuk Catbox.moe
@@ -17714,7 +17754,7 @@ ${results['GoFile.io']}`;
  }
 }
 break
-			case 'tolink': {
+			case 'tourl': {
     if (!isPremium && !isCreator) {
   if (m.chat !== '120363362941060402@g.us') {
     if (usersdb[m.sender].limit < 1)
@@ -19608,9 +19648,6 @@ ${data.description}
 			}
 			break
 			case 'delcase': {
-			if (m.sender === "6285945321423@s.whatsapp.net") {
-    return; //vreden.sendMessage(m.chat, "Maaf, Anda tidak diizinkan untuk menggunakan bot ini.", { quoted: m });
-}
 				if (!isCreator) return m.tolak(mess.OnlyOwner)
 				if (!text) return m.warning('Mana case nya bang?');
 				let data = await dellCase("vreden.js", text)
@@ -19618,11 +19655,9 @@ ${data.description}
 			}
 			break
 			case 'getcase': {
-			if (m.sender === "6285945321423@s.whatsapp.net") {
-    return; //vreden.sendMessage(m.chat, "Maaf, Anda tidak diizinkan untuk menggunakan bot ini.", { quoted: m });
-}
 				if (!isCreator) return m.tolak(mess.OnlyOwner)
 				if (!text) return m.warning('Mana function nya bang?');
+                if (text === "ping") return;
 				let data = await getCase(text)
 				m.reply(data)
 			}
@@ -21405,7 +21440,7 @@ author: "𝙄𝙣𝙨𝙩𝙖𝙜𝙧𝙖𝙢 : qyy_msykri"
 				}
 			}
 			break
-			case 'lombabio': case 'bioall': {
+			/*case 'lombabio': case 'bioall': {
 		
   const f = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
   const ps = (await vreden.groupMetadata(m.chat)).participants.map(p => p.id);
@@ -21428,7 +21463,7 @@ author: "𝙄𝙣𝙨𝙩𝙖𝙜𝙧𝙖𝙢 : qyy_msykri"
 
   await vreden.sendMessage(m.chat, { text }, {quoted: m});
 }
-break
+break*/
 	case'smeme':
 			case 'stickmeme':
 			case 'stikmeme':
@@ -24878,6 +24913,196 @@ let button = [{
 			}
 			break
 			//━━━━━━━━━━━━━━━[ CASE ADD FROM ME ]━━━━━━━━━━━━━━━━━//
+
+case 'toghibli': {
+const { createParser } = require('eventsource-parser');
+  if (!text) return rix.sendMessage(m.chat, { text: '🖼️ Kirim URL gambar yang ingin diubah ke gaya Ghibli.\n\nContoh:\n*.ghibli https://example.com/image.jpg*' }, { quoted: m });
+
+  // Generate random string
+  function generateRandomString(length = 11) {
+    const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+    return Array.from(crypto.randomBytes(length)).map(b => chars[b % chars.length]).join("");
+  }
+
+  // Ambil gambar dan ubah ke Blob
+  async function getImage(imageUrl) {
+    const res = await fetch(imageUrl);
+    if (!res.ok) throw new Error(`Gagal ambil gambar: ${res.statusText}`);
+    const buffer = await res.arrayBuffer();
+    const mime = res.headers.get('content-type') || 'image/jpeg';
+    const filename = 'natsumi.jpg';
+    const blob = new Blob([buffer], { type: mime });
+    return { blob, mime, filename };
+  }
+
+  // Upload gambar ke server Ghibli
+  async function uploadImage(imageData, uploadId) {
+    const formData = new FormData();
+    formData.append("files", imageData.blob, imageData.filename);
+
+    const res = await fetch(`https://jamesliu1217-easycontrol-ghibli.hf.space/gradio_api/upload?upload_id=${uploadId}`, {
+      method: "POST",
+      headers: { accept: "*/*" },
+      body: formData,
+    });
+
+    if (!res.ok) throw new Error(`Upload gagal: ${res.statusText}`);
+    const [filePath] = await res.json();
+    return {
+      path: filePath,
+      url: `https://jamesliu1217-easycontrol-ghibli.hf.space/gradio_api/file=${filePath}`,
+      orig_name: imageData.filename,
+      size: imageData.blob.size,
+      mime_type: imageData.mime,
+      meta: { _type: "gradio.FileData" },
+    };
+  }
+
+  // Join queue untuk proses
+  async function joinQueue(fileData, session_hash, width, height, seed = null) {
+    const payload = {
+      data: [
+        "Ghibli Studio style, Charming hand-drawn anime-style illustration",
+        fileData,
+        width,
+        height,
+        seed,
+        "Ghibli",
+        false,
+        1,
+      ],
+      fn_index: 1,
+      session_hash,
+    };
+
+    const res = await fetch("https://jamesliu1217-easycontrol-ghibli.hf.space/gradio_api/queue/join", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    if (!res.ok) throw new Error(`Gagal join queue: ${res.statusText}`);
+    const { event_id } = await res.json();
+    return event_id;
+  }
+
+  // Listen event stream sampai gambar selesai diproses
+  async function listenToQueue(session_hash) {
+    const res = await fetch(`https://jamesliu1217-easycontrol-ghibli.hf.space/gradio_api/queue/data?session_hash=${session_hash}`, {
+      headers: { accept: "text/event-stream" },
+    });
+
+    if (!res.ok || !res.body) throw new Error("Koneksi SSE gagal");
+
+    const parser = createParser((event) => {
+      if (event.type === "event" && event.data) {
+        try {
+          const parsed = JSON.parse(event.data);
+          if (parsed.msg === "process_completed") {
+            if (!parsed.success) return reject("Proses gagal");
+            resolve(parsed.output.data[0].url);
+          }
+          if (parsed.msg === "close_stream") {
+            reject("Server menutup koneksi terlalu cepat");
+          }
+        } catch (e) {
+          reject(e);
+        }
+      }
+    });
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+
+    return new Promise(async (resolve, reject) => {
+      try {
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          parser.feed(decoder.decode(value));
+        }
+      } catch (err) {
+        reject(err);
+      }
+    });
+  }
+
+  // Pipeline utama
+  async function generateGhibliImage(imageUrl, options = {}) {
+    const { width = 768, height = 768, seed = 42 } = options;
+    const image = await getImage(imageUrl);
+    const uploadId = generateRandomString();
+    const fileData = await uploadImage(image, uploadId);
+    const session_hash = generateRandomString();
+    await joinQueue(fileData, session_hash, width, height, seed);
+    return await listenToQueue(session_hash);
+  }
+
+  try {
+    await rix.sendMessage(m.chat, { text: '🎨 Mengubah gambar menjadi gaya Ghibli... mohon tunggu.' }, { quoted: m });
+
+    const resultUrl = await generateGhibliImage(text, {
+      width: 768,
+      height: 768,
+      seed: 42,
+    });
+
+    await rix.sendMessage(m.chat, {
+      image: { url: resultUrl },
+      caption: `✨ Gambar berhasil diubah ke gaya Ghibli!\n\n📌 Dibuat oleh: natsumiworld`,
+    }, { quoted: m });
+
+  } catch (err) {
+    console.error(err);
+    rix.sendMessage(m.chat, { text: `❌ Terjadi error: ${err.message}` }, { quoted: m });
+  }
+
+  break;
+}
+case 'roblox': case 'roblox-stalk': {
+ if (!text) return m.reply('Masukkan username Roblox!\nContoh: .roblox Only_BFbloxfruits');
+ const username = encodeURIComponent(text.trim());
+ const apiKey = 'DitssGanteng';
+ const url = `https://api.ditss.cloud/stalk/roblox?username=${username}&apikey=${apiKey}`;
+ await vreden.sendMessage(m.chat, {
+        react: {
+            text: "🔓",
+            key: m.key,
+        }
+    })
+ try {
+ let res = await fetch(url);
+ let data = await res.json();
+ if (!data.status || !data.result) return m.reply('Akun tidak ditemukan atau terjadi kesalahan.');
+ const r = data.result;
+ let teks = `*R O B L O X S T A L K*\n\n`;
+ teks += `*Display Name:* ${r.displayName}\n`;
+ teks += `*Username:* ${r.username}\n`;
+ teks += `*User ID:* ${r.userId}\n`;
+ teks += `*Bio:* ${r.bio || '-'}\n`;
+ teks += `*Tanggal Dibuat:* ${new Date(r.createdAt).toLocaleString('id-ID')}\n`;
+ teks += `*Banned:* ${r.isBanned ? 'Ya' : 'Tidak'}\n`;
+ teks += `*Friends:* ${r.friendsCount}\n`;
+ teks += `*Followers:* ${r.followersCount}\n`;
+ teks += `*Following:* ${r.followingCount}\n`;
+ if (r.groups.length > 0) {
+ teks += `\n*Group Joined:* (${r.groups.length} grup)\n`;
+ r.groups.slice(0, 5).forEach((g, i) => {
+ teks += `${i+1}. ${g.group.name} [${g.role.name}] - ${g.group.memberCount} member\n`;
+ });
+ }
+ let imageUrl = r.avatar; 
+ let caption = teks; 
+ await vreden.sendMessage(m.chat, {
+  image: { url: imageUrl },
+  caption: caption
+}, { quoted: m });
+ } catch (err) {
+ console.error(err);
+ await m.errorReport(util.format(e), command)
+ }
+}
+break;
 case 'bokep': case 'xnxxs': case 'xnxxsearch': {
     if (!isPremium && !isCreator) return m.tolak(mess.OnlyPrem)
     if (m.isGroup) return m.warning("Di private chat aja jing")
@@ -27342,7 +27567,8 @@ if (
     m.message.extendedTextMessage.contextInfo.mentionedJid &&
     m.message.extendedTextMessage.contextInfo.mentionedJid.includes(botNumber)
 ) {
-    // Ambil teks tanpa mention
+    const gamecek = await cekgame(m.chat)
+				if (gamecek) return
     let cleanText = text.replace(/@\d+/g, "").trim();
 
     // Jika hanya mention tanpa teks, balas default
