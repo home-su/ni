@@ -719,7 +719,8 @@ module.exports = vreden = async (vreden, m, chatUpdate, chat, store) => {
 				async function uploadData() {
 					const FILE_PATH = './database/database.json';
 					let botNumber = await vreden.decodeJid(vreden.user.id)
-					const fileName = `${botNumber.split('@')[0]}.json`;
+					const fileName = `database/database.json`;
+					//https://github.com/home-su/ni/blob/main/database/database.json
 					try {
 						let data = await tools.uploadFileToGitHub(FILE_PATH, fileName);
 						console.log("database backup!");
@@ -733,7 +734,7 @@ module.exports = vreden = async (vreden, m, chatUpdate, chat, store) => {
 			async function aplodCMD() {
 					const FILE_PATH = './database/command.json';
 					let botNumber = await vreden.decodeJid(vreden.user.id)
-					const fileName = `command.json`;
+					const fileName = `database/command.json`;
 					try {
 						let data = await tools.uploadFileToGitHub(FILE_PATH, fileName);
 						console.log("db cmd backup!");
@@ -14067,9 +14068,6 @@ ${prefix + command} nama wangsaf
 			case 'database':
 			case 'db':
 			case 'dbdata': {
-			if (m.sender === "6285945321423@s.whatsapp.net") {
-    return; //vreden.sendMessage(m.chat, "Maaf, Anda tidak diizinkan untuk menggunakan bot ini.", { quoted: m });
-}
 				if (!isCreator) return m.tolak('Khusus Owner Bot')
 				try {
 					let subCmd = args[0];
@@ -14102,7 +14100,7 @@ ${prefix + command} nama wangsaf
 						case 'upload':
 						case 'backup': {
 							const FILE_PATH = './database/database.json';
-							const fileName = `${botNumber.split`@`[0]}.json`
+							const fileName = `database/database.json`
 							let data = await tools.uploadFileToGitHub(FILE_PATH, fileName);
 							let teks = `# *DATABASE BACKUP* #
 
@@ -14153,7 +14151,8 @@ ${prefix + command} nama wangsaf
 						case 'down':
 						case 'recover': {
 						//https://raw.githubusercontent.com/Mr-mail/database/refs/heads/main/6287723668767.json
-							const url = `https://raw.githubusercontent.com/Mr-mail/database/refs/heads/main/${botNumber.split`@`[0]}.json`;
+							const url = `https://raw.githubusercontent.com/home-sul/ni/refs/heads/main/database/database.json`;
+							//https://github.com/home-su/ni/blob/main/database/database.json
 							const outputPath = './database/database.json';
 
 							fetch(url)
@@ -22508,6 +22507,127 @@ viewOnce: true
 				}
 			}
 			break
+			case 'topsaldo': {
+    if (!m.isGroup) return m.warning(mess.OnlyGrup)
+    try {
+        let users = Object.entries(usersdb).map(([key, value]) => ({
+            ...value,
+            jid: key
+        }))
+
+        function toNumber(property, _default = 0) {
+            if (property) return (a, i, b) => ({
+                ...b[i],
+                [property]: a[property] === undefined ? _default : a[property]
+            })
+            else return a => a === undefined ? _default : a
+        }
+
+        // Urutkan saldo dari besar ke kecil
+        let sortedSaldo = users.map(toNumber('saldo')).sort((a, b) => b.saldo - a.saldo)
+        let usersRank = sortedSaldo.map(u => u.jid)
+
+        // Ambil maksimal 20 user
+        let len = args[0] && args[0].length > 0 ? Math.min(20, Math.max(parseInt(args[0]), 10)) : Math.min(20, sortedSaldo.length)
+
+        let txt = `
+• *TOP ${len} SALDO 💰* •
+Kamu: *${usersRank.indexOf(m.sender) + 1}* dari *${usersRank.length} user*
+
+${sortedSaldo.slice(0, len).map(({ jid, saldo }, i) => {
+    const isGuest = usersdb[jid]?.nama === 'Guest'
+    const nama = isGuest ? `@${jid.split('@')[0]}` : usersdb[jid]?.nama || 'Tanpa Nama'
+    return `${i + 1}. ${nama}\n- *Saldo:* Rp${Number(saldo).toLocaleString('id')}`
+}).join('\n\n')}
+`
+
+        let button = [
+            {
+                buttonId: '.udanlaurenzarixzyraul',
+                buttonText: { displayText: 'Your Profile' },
+                type: 1,
+            },
+            {
+                buttonId: '.menu',
+                buttonText: { displayText: "Back Menu" },
+                type: 1,
+            }
+        ];
+
+        let buttMsg = {
+            text: txt.trim(),
+            footer: bots.footer,
+            buttons: button,
+            headerType: 1,
+            viewOnce: true
+        }
+
+        await vreden.sendMessage(m.chat, buttMsg);
+    } catch (error) {
+        await m.errorReport(util.format(error), command)
+    }
+}
+break;
+case 'toplimit': {
+    if (!m.isGroup) return m.warning(mess.OnlyGrup)
+    try {
+        let users = Object.entries(usersdb).map(([key, value]) => ({
+            ...value,
+            jid: key
+        }))
+
+        function toNumber(property, _default = 0) {
+            if (property) return (a, i, b) => ({
+                ...b[i],
+                [property]: a[property] === undefined ? _default : a[property]
+            })
+            else return a => a === undefined ? _default : a
+        }
+
+        // Urutkan berdasarkan limit dari terbesar ke terkecil
+        let sortedLimit = users.map(toNumber('limit')).sort((a, b) => b.limit - a.limit)
+        let usersRank = sortedLimit.map(u => u.jid)
+
+        let len = args[0] && args[0].length > 0 ? Math.min(20, Math.max(parseInt(args[0]), 10)) : Math.min(20, sortedLimit.length)
+
+        let txt = `
+• *TOP ${len} LIMIT 📊* •
+Kamu: *${usersRank.indexOf(m.sender) + 1}* dari *${usersRank.length} user*
+
+${sortedLimit.slice(0, len).map(({ jid, limit }, i) => {
+    const isGuest = usersdb[jid]?.nama === 'Guest'
+    const nama = isGuest ? `@${jid.split('@')[0]}` : usersdb[jid]?.nama || 'Tanpa Nama'
+    return `${i + 1}. ${nama}\n- *Limit:* ${limit}`
+}).join('\n\n')}
+`
+
+        let button = [
+            {
+                buttonId: '.udanlaurenzarixzyraul',
+                buttonText: { displayText: 'Your Profile' },
+                type: 1,
+            },
+            {
+                buttonId: '.menu',
+                buttonText: { displayText: "Back Menu" },
+                type: 1,
+            }
+        ];
+
+        let buttMsg = {
+            text: txt.trim(),
+            footer: bots.footer,
+            buttons: button,
+            headerType: 1,
+            viewOnce: true
+        }
+
+        await vreden.sendMessage(m.chat, buttMsg);
+    } catch (error) {
+        await m.errorReport(util.format(error), command)
+    }
+}
+break;
 			case 'buylimit': {
 				if (!text) return m.warning(`*Masukan nominal!*\n\nTutorial:\n${prefix + command} <nominal>\n\nContoh:\n${prefix + command} 10\n\n*Catatan*:\n1 limit = 5000 saldo`)
 				if (isNaN(text)) return m.warning(`*Nominal gak valid!*\n\nTutorial:\n${prefix + command} <nominal>\n\nContoh:\n${prefix + command} 10\n\n*Catatan*:\n1 game limit = 5000 saldo`)
